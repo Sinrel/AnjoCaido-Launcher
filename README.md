@@ -1,7 +1,7 @@
 AnjoCaido-Launcher
 ==================
 
-AnjoCaido лаунчер для minecraft обновлённый SiNReL Company
+AnjoCaido лаунчер для minecraft обновлённый Sinrel Group
 
 ##Преимущества перед оригиналом:##
 - Полная русификация бэкап-менеджера и самого лаунчера
@@ -10,6 +10,6 @@ AnjoCaido лаунчер для minecraft обновлённый SiNReL Company
 AnjoCaido-Launcher
 ==================
 
-AnjoCaido Launcher for minecraft updated by SiNReL Company
+AnjoCaido Launcher for minecraft updated by Sinrel Group
 
 English description will coming soon
