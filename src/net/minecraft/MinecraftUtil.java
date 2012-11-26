@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.sinrel.Options;
+import org.sinrel.anjocaido.Options;
 
 public class MinecraftUtil {
 	

@@ -1,4 +1,4 @@
-package org.sinrel;
+package org.sinrel.anjocaido;
 
 import java.io.File;
 import java.io.IOException;

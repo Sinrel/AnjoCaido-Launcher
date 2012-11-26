@@ -36,7 +36,7 @@ import java.util.jar.Pack200;
 
 import javax.swing.JOptionPane;
 
-import org.sinrel.OptionsForm;
+import org.sinrel.anjocaido.OptionsForm;
  
 public class GameUpdater implements Runnable {	 
 	

@@ -1,4 +1,4 @@
-package org.sinrel;
+package org.sinrel.anjocaido;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

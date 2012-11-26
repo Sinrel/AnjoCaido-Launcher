@@ -2,8 +2,8 @@ package net.minecraft;
 
 import java.util.ArrayList;
 
-import org.sinrel.Options;
-import org.sinrel.OptionsForm;
+import org.sinrel.anjocaido.Options;
+import org.sinrel.anjocaido.OptionsForm;
 
 public class MinecraftLauncher {
   //private static final int MIN_HEAP = 511;

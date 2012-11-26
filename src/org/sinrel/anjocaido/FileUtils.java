@@ -1,21 +1,24 @@
-package org.sinrel;
+package org.sinrel.anjocaido;
 
-
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WriteRead {
+public class FileUtils {
 	
-	public static String addStringAndWriteToFile(File filename, String strPage ){
+	private FileUtils(){}
+	
+	public static void writeAllLines(File file, List<String> lines) throws IOException
+	{
+		writeToFile(file, lines);
+	}
+	
+	public static List<String> getAllLines(File file) throws IOException
+	{
+		return readFromFile(file);
+	}
+	
+	private static String addStringAndWriteToFile(File filename, String strPage ){
 		List<String> strings = readFromFile(filename);
 		strings.add(strPage);
 	    PrintWriter writer = null;
@@ -35,7 +38,7 @@ public class WriteRead {
 	
 	}
 	
-	public static String writeToFile(File filename, List<String> strings ){
+	private static String writeToFile(File filename, List<String> strings ){
 	    PrintWriter writer = null;
 	    try {
 	     writer = new PrintWriter(
@@ -53,7 +56,7 @@ public class WriteRead {
 	
 	}
 	
-	public static List<String> readFromFile(File filename) {
+	private static List<String> readFromFile(File filename) {
 		List<String> strings = new ArrayList<String>();
 		BufferedReader reader = null;
 		try {
@@ -67,7 +70,4 @@ public class WriteRead {
 		} catch (IOException e) {}
 		return strings;
 	}
-	
-
-
 }

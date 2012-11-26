@@ -41,8 +41,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import org.sinrel.Options;
-import org.sinrel.OptionsForm;
+import org.sinrel.anjocaido.Options;
+import org.sinrel.anjocaido.OptionsForm;
+
 import java.awt.Choice;
 import java.awt.GridBagConstraints;
 import java.awt.CardLayout;
