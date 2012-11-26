@@ -9,11 +9,11 @@ public class FileUtils {
 	
 	public static void writeAllLines(File file, List<String> lines) throws IOException
 	{
-		org.apache.commons.io.FileUtils.writeLines(file, lines);
+		WriteRead.writeToFile(file, lines);
 	}
 	
 	public static List<String> getAllLines(File file) throws IOException
 	{
-		return org.apache.commons.io.FileUtils.readLines(file);
+		return WriteRead.readFromFile(file);
 	}
 }
