@@ -1,10 +1,12 @@
 package anjocaido.minecraftmanager;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.ButtonGroup;
@@ -162,18 +164,28 @@ public class MinecraftBackupManager extends JFrame {
 			  MinecraftBackupManager.this.jButton2ActionPerformed(evt);
 		  }
 	  	  });
+	  	  	  
+	  	  	  JButton btnNewButton = new JButton("\u041E\u0442\u043A\u0440\u044B\u0442\u044C .minecraft");
+	  	  	  btnNewButton.addActionListener(new ActionListener() {
+	  	  	  	public void actionPerformed(ActionEvent arg0) {
+			  	  	  	Desktop desktop = null;
+			  	  	if (Desktop.isDesktopSupported()) {
+			  	  	    desktop = Desktop.getDesktop();
+			  	  	    try {
+							desktop.open(MinecraftUtil.getWorkingDirectory());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			  	  	}
+	  	  	  	}
+	  	  	  });
 	  	  
 	  	  	  GroupLayout jPanel1Layout = new GroupLayout(this.jPanel1);
 	  	  	  jPanel1Layout.setHorizontalGroup(
 	  	  	  	jPanel1Layout.createParallelGroup(Alignment.LEADING)
 	  	  	  		.addGroup(jPanel1Layout.createSequentialGroup()
 	  	  	  			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-	  	  	  				.addGroup(jPanel1Layout.createSequentialGroup()
-	  	  	  					.addContainerGap()
-	  	  	  					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-	  	  	  						.addComponent(jLabel5)
-	  	  	  						.addComponent(jLabel4)
-	  	  	  						.addComponent(jLabel3)))
 	  	  	  				.addGroup(jPanel1Layout.createSequentialGroup()
 	  	  	  					.addGap(25)
 	  	  	  					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING, false)
@@ -182,13 +194,20 @@ public class MinecraftBackupManager extends JFrame {
 	  	  	  							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	  	  	  							.addComponent(worldBox, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
 	  	  	  						.addComponent(jButton2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	  	  	  						.addComponent(jButton1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-	  	  	  			.addContainerGap(299, Short.MAX_VALUE))
+	  	  	  						.addComponent(jButton1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	  	  	  						.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+	  	  	  				.addGroup(jPanel1Layout.createSequentialGroup()
+	  	  	  					.addContainerGap()
+	  	  	  					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+	  	  	  						.addComponent(jLabel5)
+	  	  	  						.addComponent(jLabel4)
+	  	  	  						.addComponent(jLabel3))))
+	  	  	  			.addContainerGap(310, Short.MAX_VALUE))
 	  	  	  );
 	  	  	  jPanel1Layout.setVerticalGroup(
 	  	  	  	jPanel1Layout.createParallelGroup(Alignment.TRAILING)
 	  	  	  		.addGroup(jPanel1Layout.createSequentialGroup()
-	  	  	  			.addContainerGap(25, Short.MAX_VALUE)
+	  	  	  			.addContainerGap(8, Short.MAX_VALUE)
 	  	  	  			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
 	  	  	  				.addComponent(worldBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 	  	  	  				.addComponent(lblNewLabel))
@@ -196,13 +215,15 @@ public class MinecraftBackupManager extends JFrame {
 	  	  	  			.addComponent(jButton2)
 	  	  	  			.addPreferredGap(ComponentPlacement.RELATED)
 	  	  	  			.addComponent(jButton1)
-	  	  	  			.addGap(18)
+	  	  	  			.addPreferredGap(ComponentPlacement.RELATED)
+	  	  	  			.addComponent(btnNewButton)
+	  	  	  			.addGap(9)
 	  	  	  			.addComponent(jLabel3)
 	  	  	  			.addPreferredGap(ComponentPlacement.RELATED)
 	  	  	  			.addComponent(jLabel4)
 	  	  	  			.addPreferredGap(ComponentPlacement.RELATED)
 	  	  	  			.addComponent(jLabel5)
-	  	  	  			.addGap(31))
+	  	  	  			.addContainerGap())
 	  	  	  );
 	  	  	  this.jPanel1.setLayout(jPanel1Layout);
 	  	  	  

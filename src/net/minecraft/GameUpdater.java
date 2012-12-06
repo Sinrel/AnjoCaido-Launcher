@@ -37,6 +37,8 @@ import java.util.jar.Pack200;
 import javax.swing.JOptionPane;
 
 import org.sinrel.anjocaido.OptionsForm;
+
+import anjocaido.minecraftmanager.Zipper;
  
 public class GameUpdater implements Runnable {	 
 	
@@ -72,7 +74,7 @@ public class GameUpdater implements Runnable {
 	protected String[] certificateRefusedMessage = { "В доступе а applet отказано.", "пожалуйста согласитесь на разрешение", "апплет для продолжения процесса загрузки." };
 	protected static boolean natives_loaded = false;
 	public boolean forceUpdate = false;
-	public static final String[] gameFiles = { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar", "minecraft.jar" };
+	public static final String[] gameFiles = { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar", "minecraft.jar", "client.zip" };
 	
 	InputStream[] isp;
 	URLConnection urlconnectionp;
@@ -131,7 +133,7 @@ public class GameUpdater implements Runnable {
 	   URL path = new URL(MinecraftUtil.getOptions().getOption(OptionsForm.UPDATE_OPTION));
  
 	   for (int i = 0; i < gameFiles.length; i++) {
-		   this.urlList[i] = new URL(path, gameFiles[i]);
+		   	this.urlList[i] = new URL(path, gameFiles[i]);
 	   }
  
 	   String osName = System.getProperty("os.name");
@@ -193,6 +195,11 @@ public class GameUpdater implements Runnable {
 			   downloadJars(path);
 			   extractJars(path);
 			   extractNatives(path);
+			   File zip = new File(path + "client.zip");
+			   System.out.println(zip.toString());
+			   zip.setWritable(true);
+			   Zipper.unzipFolder(zip, MinecraftUtil.getWorkingDirectory());
+			   zip.delete();
 			   
 			   this.percentage = 90;
 		   }
@@ -299,7 +306,8 @@ public class GameUpdater implements Runnable {
  
      for (int i = 0; i < this.urlList.length; i++) {
        System.out.println(this.urlList[i]);
-       URLConnection urlconnection = this.urlList[i].openConnection();
+       URLConnection urlconnection = null;
+       urlconnection = this.urlList[i].openConnection();
        urlconnection.setDefaultUseCaches(false);
        if ((urlconnection instanceof HttpURLConnection)) {
          ((HttpURLConnection)urlconnection).setRequestMethod("HEAD");
@@ -323,11 +331,19 @@ public class GameUpdater implements Runnable {
  
          if ((urlconnection instanceof HttpURLConnection)) {
            urlconnection.setRequestProperty("Cache-Control", "no-cache");
-           urlconnection.connect();
+           try{
+        	   urlconnection.connect();
+           }catch (Exception e) {
+        	   System.out.println(this.urlList[i]);
+       		if (this.urlList[i].toString().endsWith("client.zip"))
+       			continue;
+       		else throw e;
+		}
          }
  
          String currentFile = getFileName(this.urlList[i]);
          InputStream inputstream = getJarInputStream(currentFile, urlconnection);
+         if (inputstream == null) continue;
          FileOutputStream fos = new FileOutputStream(path + currentFile);
 
          long downloadStartTime = System.currentTimeMillis();
@@ -426,6 +442,7 @@ public class GameUpdater implements Runnable {
        if (currentFile.equals("minecraft.jar")) {
          throw new Exception("Невозможно загрузить " + currentFile);
        }
+       if(currentFile.equalsIgnoreCase("client.zip")) return null;
        throw new Exception("Невозможно загрузить " + currentFile);
      }
  

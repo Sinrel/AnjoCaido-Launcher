@@ -81,41 +81,50 @@ public class Zipper {
   }
 
   public static void unzipFolder(File zipFile, File destFolder) {
-    try {
-    	BufferedOutputStream dest = null;
-    	FileInputStream fis = new FileInputStream(zipFile);
-    	ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis));
-    	ZipEntry entry;
-    	
-    	while ((entry = zis.getNextEntry()) != null) {
-    		System.out.println("Extracting: " + entry);
+	    try {
+	    	BufferedOutputStream dest = null;
+	    	FileInputStream fis = new FileInputStream(zipFile);
+	    	ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis));
+	    	ZipEntry entry;
+	    	
+	    	while ((entry = zis.getNextEntry()) != null) {
+	    		System.out.println("Extracting: " + entry);
 
-    		byte[] data = new byte[2048];
+	    		byte[] data = new byte[2048];
 
-    		File f = new File(destFolder + File.separator + entry.getName());
-    		
-    		if ((f.getParentFile() != null) && (!f.getParentFile().exists())) {
-    			f.getParentFile().mkdirs();
-    		}
-    		
-    		if (!f.exists()) {
-    			f.createNewFile();
-    			f.getParent();
-    	   }
-    		FileOutputStream fos = new FileOutputStream(f);
-    		dest = new BufferedOutputStream(fos, 2048);
-    		
-    		int count;
-    		
-    		while ((count = zis.read(data, 0, 2048)) != -1) {
-    			dest.write(data, 0, count);
-    	    }
-    		dest.flush();
-    		dest.close();
-        }
-    	zis.close();
-    } catch (Exception e) {
-    	e.printStackTrace();
-    	}
-  }
+	    		File f = new File(destFolder + File.separator + entry.getName());
+	    		
+	    		if ((f.getParentFile() != null) && (!f.getParentFile().exists())) {
+	    			f.getParentFile().mkdirs();
+	    		}
+	    		
+	    		Boolean isDir = entry.isDirectory();
+	    		
+	    		if (!f.exists()) {
+	    			if(isDir){
+	    				f.mkdirs();
+	    			}else{
+		    			System.out.println("f: " + f.toString());
+		    			f.createNewFile();
+		    			f.getParent();
+	    			}
+	    	    }
+	    		if(!isDir){
+		    		FileOutputStream fos = new FileOutputStream(f);
+		    		dest = new BufferedOutputStream(fos, 2048);
+		    		
+		    		int count;
+		    		
+		    		while ((count = zis.read(data, 0, 2048)) != -1) {
+		    			dest.write(data, 0, count);
+		    	    }
+		    		dest.flush();
+		    		dest.close();
+	    		}
+	        }
+	    	zis.close();
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    	}
+	  }
 }

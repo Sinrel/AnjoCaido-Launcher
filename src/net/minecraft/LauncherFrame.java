@@ -7,6 +7,10 @@ import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 import javax.imageio.ImageIO;
  
 public class LauncherFrame extends Frame {
@@ -66,7 +70,7 @@ public class LauncherFrame extends Frame {
 		return MinecraftUtil.getFakeLatestVersion() + ":35b9fd01865fda9d70b157e244cf801c:" + userName + ":12345:";
     }
  
-	public void login(String userName,String server,String port) {
+	public void login(String userName,String server,String port){
 		String result = getFakeResult(userName);
 		String[] values = result.split(":");
 		
@@ -74,6 +78,7 @@ public class LauncherFrame extends Frame {
 		this.launcher.forceUpdate = this.forceUpdate;
 		this.launcher.customParameters.put("userName", values[2].trim());
 		this.launcher.customParameters.put("sessionId", values[3].trim());
+		this.launcher.customParameters.put("stand-alone", "true");
 		
 		if(!server.equalsIgnoreCase("null")){
 			this.launcher.customParameters.put("server", server);
