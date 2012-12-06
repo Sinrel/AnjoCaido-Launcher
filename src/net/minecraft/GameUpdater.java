@@ -638,7 +638,7 @@ public class GameUpdater implements Runnable {
      if ((!MinecraftUtil.getNativesFolder().exists()) || (!MinecraftUtil.getNativesFolder().isDirectory())) {
        return false;
      }
-     if (MinecraftUtil.getBinFolder().list().length < gameFiles.length + 1) {
+     if (MinecraftUtil.getBinFolder().list().length < gameFiles.length) {
        return false;
      }
      if (MinecraftUtil.getNativesFolder().list().length < 1) {
@@ -648,7 +648,7 @@ public class GameUpdater implements Runnable {
      for (String necessary : gameFiles) {
        boolean isThere = false;
        for (String found : bins) {
-         if (necessary.equalsIgnoreCase(found)) {
+         if (necessary.equalsIgnoreCase(found) || necessary.equalsIgnoreCase("client.zip")) {
            isThere = true;
            break;
          }
