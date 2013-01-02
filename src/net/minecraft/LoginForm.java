@@ -57,11 +57,11 @@ public class LoginForm extends Panel {
 	
 	private Image bgImage;
 	private TextField userName = new TextField(20);
-	private Checkbox forceUpdateBox = new Checkbox("Обновить клиент!");
-	private Button launchButton = new Button("Войти в игру");
+	private Checkbox forceUpdateBox = new Checkbox("РћР±РЅРѕРІРёС‚СЊ РєР»РёРµРЅС‚!");
+	private Button launchButton = new Button("Р’РѕР№С‚Рё РІ РёРіСЂСѓ");
 	private Label errorLabel = new Label("", 1);
 	private Label creditsVersion = new Label("v13");
-	private Button openManager = new Button("Backup менеджер");
+	private Button openManager = new Button("РњРµРЅРµРґР¶РµСЂ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ");
 	private LauncherFrame launcherFrame;
 	private boolean outdated = false;
 	private VolatileImage img;
@@ -121,7 +121,7 @@ public class LoginForm extends Panel {
 			this.userName.setText(dis.readUTF());
 			dis.close();
 			}catch (Exception e) {
-				System.out.println("Файл с последним логином отсуствует!");
+				System.out.println("Р¤Р°Р№Р» СЃ РїРѕСЃР»РµРґРЅРёРј Р»РѕРіРёРЅРѕРј РѕС‚СЃСѓСЃС‚РІСѓРµС‚!");
 			}
     }
 
@@ -231,7 +231,7 @@ public class LoginForm extends Panel {
 		Panel titles = new Panel(gl1);
 		Panel values = new Panel(gl2);
 
-		titles.add(new Label("Логин:", 2));
+		titles.add(new Label("Р›РѕРіРёРЅ:", 2));
 		titles.add(new Label("", 2));
 		values.add(this.userName);
 		values.add(this.forceUpdateBox);
@@ -245,7 +245,7 @@ public class LoginForm extends Panel {
 		
 		try {
 			if (this.outdated) {
-				Label accountLink = new Label("Обновите Лаунчер!") {
+				Label accountLink = new Label("РћР±РЅРѕРІРёС‚Рµ Р»Р°СѓРЅС‡РµСЂ!") {
 					private static final long serialVersionUID = 0L;
 
 					public void paint(Graphics g) {
@@ -291,7 +291,7 @@ public class LoginForm extends Panel {
 				registerPanel.add(accountLink, "West");
 				registerPanel.add(new Panel(), "Center");
 			} else {
-				Label accountLink = new Label("Нужен аккаунт?") {
+				Label accountLink = new Label("РќСѓР¶РµРЅ Р°РєРєР°СѓРЅС‚?") {
 					private static final long serialVersionUID = 0L;
 
 					public void paint(Graphics g) {

@@ -32,7 +32,7 @@ import javax.swing.JComboBox;
 import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import java.awt.SystemColor;
-
+//TODO  f*cking РїРµСЂРµСЃС‚Р°РЅРѕРІРІРєР°
 public class MinecraftBackupManager extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public static final com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel feel = new NimbusLookAndFeel();
@@ -96,37 +96,37 @@ public class MinecraftBackupManager extends JFrame {
 	  this.jSeparator1 = new JSeparator();
 	  
 	  setDefaultCloseOperation(2);
-	  setTitle("Minecraft Backup \u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 (by AnjoCaido) Sinrel Edition");
+	  setTitle("РњРµРЅРµРґР¶РµСЂ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ Minecraft");
 
-	  this.uninstall.setText("Удалить игру");
+	  this.uninstall.setText("РЈРґР°Р»РёС‚СЊ РёРіСЂСѓ");
 	  this.uninstall.setEnabled(false);
 	  this.uninstall.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 			  MinecraftBackupManager.this.uninstallActionPerformed(evt);
 		  }
 	  });
-	  this.saveuninstall.setText("Полное удаление (Включая Saves/Worlds)");
+	  this.saveuninstall.setText("РџРѕР»РЅРѕРµ СѓРґР°Р»РµРЅРёРµ (Р’РєР»СЋС‡Р°СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ)");
 	  this.saveuninstall.setEnabled(false);
 
-	  this.backupgame.setText("Backup игры (файлы игры)");
+	  this.backupgame.setText("Р РµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ (С„Р°РёР»С‹ РёРіСЂС‹)");
 	  this.backupgame.setEnabled(false);
 	  this.backupgame.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 			  MinecraftBackupManager.this.backupgameActionPerformed(evt);
 		  }
 	  });
-	  this.jButton5.setText("Восстановить игру");
+	  this.jButton5.setText("Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РёРіСЂСѓ");
 	  this.jButton5.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 			  MinecraftBackupManager.this.jButton5ActionPerformed(evt);
 		  }
 	  });
 	  
-	  this.jLabel1.setText("Возможно, вы захотите сделать Backup всей игры , сразу же после его установки.");
-	  this.jLabel2.setText("Никогда незнаеш когда выйдет обновление и сломает всё.");
-	  this.jLabel7.setText("опять Zip формат, но расширение .mcgame");
+	  this.jLabel1.setText("Р’РѕР·РјРѕР¶РЅРѕ, РІС‹ Р·Р°С…РѕС‚РёС‚Рµ СЃРґРµР»Р°С‚СЊ СЂРµР·РµСЂРІРЅСѓСЋ РєРѕРїРёСЋ РІСЃРµР№ РёРіСЂС‹ СЃСЂР°Р·Сѓ Р¶Рµ РїРѕСЃР»Рµ РµС‘ СѓСЃС‚Р°РЅРѕРІРєРё.");
+	  this.jLabel2.setText("РќРёРєРѕРіРґР° РЅРµ Р·РЅР°РµС€СЊ РєРѕРіРґР° РІС‹Р№РґРµС‚ РѕР±РЅРѕРІР»РµРЅРёРµ Рё СЃР»РѕРјР°РµС‚ РІСЃС‘.");
+	  this.jLabel7.setText("РћРїСЏС‚СЊ Zip С„РѕСЂРјР°С‚, РЅРѕ СЂР°СЃС€РёСЂРµРЅРёРµ .mcgame");
 
-	  this.fullgamebackup.setText("Внутренние папки (saves и другие)");
+	  this.fullgamebackup.setText("Р’РЅСѓС‚СЂРµРЅРЅРёРµ РїР°РїРєРё (saves Рё РґСЂСѓРіРёРµ)");
 	  this.fullgamebackup.setEnabled(false);
 	  this.fullgamebackup.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
@@ -141,31 +141,31 @@ public class MinecraftBackupManager extends JFrame {
 	  this.jLabel4 = new JLabel();
 	  this.jLabel5 = new JLabel();
 	  
-	  this.jLabel3.setText("Все будет храниться в формате Zip.");
-	  this.jLabel4.setText("\u041D\u043E \u0441 \u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u0438\u0435\u043C .mcworld");
-	  this.jLabel5.setText("\u0422\u044B \u043C\u043E\u0436\u0435\u0448 \u0432\u043E\u0441\u0441\u0442\u043E\u043D\u043E\u0432\u0438\u0442\u044C \u0430\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u043E \u043B\u044E\u0431\u043E\u0439 \u043C\u0438\u0440 \u0441 \u043B\u044E\u0431\u044B\u043C \u0438\u043C\u0435\u043D\u0435\u043C");
+	  this.jLabel3.setText("Р’СЃРµ Р±СѓРґРµС‚ С…СЂР°РЅРёС‚СЊСЃСЏ РІ С„РѕСЂРјР°С‚Рµ Zip.");
+	  this.jLabel4.setText("РќРѕ СЃ СЂР°СЃС€РёСЂРµРЅРёРµРј .mcworld");
+	  this.jLabel5.setText("РўС‹ РјРѕР¶РµС€СЊ РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ Р°Р±СЃРѕР»СЋС‚РЅРѕ Р»СЋР±РѕР№ РјРёСЂ СЃ Р»СЋР±С‹Рј РёРјРµРЅРµРј");
 	  
 	  worldBox = new JComboBox();
 	  
-	  JLabel lblNewLabel = new JLabel("\u041C\u0438\u0440:");
+	  JLabel lblNewLabel = new JLabel("РњРёСЂ:");
 	  
 	  this.jButton1 = new JButton();
 	  
-	  	  this.jButton1.setText("\u0421\u0434\u0435\u043B\u0430\u0442\u044C Backup");
+	  	  this.jButton1.setText("РЎРґРµР»Р°С‚СЊ СЂРµР·РµСЂРІРЅСѓСЋ РєРѕРїРёСЋ");
 	  	  this.jButton1.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 			  MinecraftBackupManager.this.jButton1ActionPerformed(evt);
     	  }
 	  	  });
 	  	  this.jButton2 = new JButton();
-	  	  this.jButton2.setText("\u0412\u043E\u0441\u0441\u0442\u043E\u043D\u043E\u0432\u0438\u0442\u044C \u0438\u0437 Backup");
+	  	  this.jButton2.setText("Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РјРёСЂ");
 	  	  this.jButton2.addActionListener(new ActionListener() {
 		  public void actionPerformed(ActionEvent evt) {
 			  MinecraftBackupManager.this.jButton2ActionPerformed(evt);
 		  }
 	  	  });
 	  	  	  
-	  	  	  JButton btnNewButton = new JButton("\u041E\u0442\u043A\u0440\u044B\u0442\u044C .minecraft");
+	  	  	  JButton btnNewButton = new JButton("РћС‚РєСЂС‹С‚СЊ .minecraft");
 	  	  	  btnNewButton.addActionListener(new ActionListener() {
 	  	  	  	public void actionPerformed(ActionEvent arg0) {
 			  	  	  	Desktop desktop = null;
@@ -236,7 +236,7 @@ public class MinecraftBackupManager extends JFrame {
 	  
 	  this.jTabbedPane1.addTab("\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430 \u0438\u0433\u0440\u044B", this.jPanel2);
 	  this.jLabel8.setText("by AnjoCaido and Sinrel group - v1.3");
-	  this.jLabel12.setText("backup \u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435 \u0437\u0430\u043D\u0438\u043C\u0430\u0435\u0442 \u0432\u0440\u0435\u043C\u044F \u0436\u0434\u0438\u0442\u0435 \u0434\u043E \u00AB\u0413\u043E\u0442\u043E\u0432\u043E\r\n\u00BB");
+	  this.jLabel12.setText("РЎРѕР·РґР°РЅРёРµ СЂРµР·РµСЂРІРЅРѕР№ РєРѕРїРёРё Рё РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РјРёСЂР° Р·Р°РЅРёРјР°РµС‚ РЅРµРєРѕС‚РѕСЂРѕРµ РІСЂРµРјСЏ");
 
 	  GroupLayout layout = new GroupLayout(getContentPane());
 	  getContentPane().setLayout(layout);
@@ -246,12 +246,12 @@ public class MinecraftBackupManager extends JFrame {
   }
 
   private void uninstallActionPerformed(ActionEvent evt) {
-	  int result = JOptionPane.showConfirmDialog(this, "Are you sure that you want to uninstall Minecraft?\nCan't Undo It! (unless you have backup, hehe)", "Are you sure? (Uninstallation)", 0, 2);
+	  int result = JOptionPane.showConfirmDialog(this, "Р’С‹ СѓРІРµСЂРµРЅРЅС‹?", "Are you sure? (Uninstallation)", 0, 2);
 	  if ((result == 1) || (result == -1)) {
 		  return;
 	  }
 	  BackupUtil.uninstallGame(this.saveuninstall.isSelected());
-	  JOptionPane.showMessageDialog(this, "Готово!", "Удаление", -1);
+	  JOptionPane.showMessageDialog(this, "Р“РѕС‚РѕРІРѕ!", "РЈРґР°Р»РµРЅРёРµ", -1);
 	  refreshButtons();
   }
 
@@ -270,11 +270,11 @@ public class MinecraftBackupManager extends JFrame {
 		  return;
 	  }
 	  BackupUtil.backupGame(f, this.fullgamebackup.isSelected());
-	  JOptionPane.showMessageDialog(this, "Готово!", "Backup игры", -1);
+	  JOptionPane.showMessageDialog(this, "Р“РѕС‚РѕРІРѕ!", "Р РµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ РёРіСЂС‹", -1);
   }
 
   private void jButton5ActionPerformed(ActionEvent evt) {
-	  int result = JOptionPane.showConfirmDialog(this, "Вы уверены что хотите восстоновить весь Minecraft?\nIT Это перезапишет все ваши данные\n(если вы восстонавливаете из полного бэкапа то вы потеряете и ваши миры тоже)\nУбедись что сохронили все важные данные игры!", "Вы уверены? (Полное восстоновление игры)", 0, 2);
+	  int result = JOptionPane.showConfirmDialog(this, "Р’С‹ СѓРІРµСЂРµРЅС‹ С‡С‚Рѕ С…РѕС‚РёС‚Рµ РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РІРµСЃСЊ Minecraft?\nIT Р­С‚Рѕ РїРµСЂРµР·Р°РїРёС€РµС‚ РІСЃРµ РІР°С€Рё РґР°РЅРЅС‹Рµ\n(РµСЃР»Рё РІС‹ РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚Рµ РёР· РїРѕР»РЅРѕРіРѕ Р±СЌРєР°РїР° С‚Рѕ РІС‹ РїРѕС‚РµСЂСЏРµС‚Рµ Рё РІР°С€Рё РјРёСЂС‹ С‚РѕР¶Рµ)\nРЈР±РµРґРёСЃСЊ С‡С‚Рѕ СЃРѕС…СЂР°РЅРёР»Рё РІСЃРµ РІР°Р¶РЅС‹Рµ РґР°РЅРЅС‹Рµ РёРіСЂС‹!", "Р’С‹ СѓРІРµСЂРµРЅРЅС‹?  (РџРѕР»РЅРѕРµ РІРѕСЃСЃС‚РѕРЅРѕРІР»РµРЅРёРµ РёРіСЂС‹)", 0, 2);
 	  
 	  if ((result == 1) || (result == -1)) {
 		  return;
@@ -293,11 +293,11 @@ public class MinecraftBackupManager extends JFrame {
 	  try {
 		  BackupUtil.restoreGame(f);
 	  } catch (IllegalStateException ex) {
-		  JOptionPane.showMessageDialog(this, "Ошибка!\nInvalid Zip Contents!\nthe game folder inside must have 'minecraft_backup' as name.", "Game Restoration", 0);
+		  JOptionPane.showMessageDialog(this, "РћС€РёР±РєР°!\nРќРµРІРµСЂРЅРѕРµ СЃРѕРґРµСЂР¶Р°РЅРёРµ Р°СЂС…РёРІР°!\nРџР°РїРєР° РІРЅСѓС‚СЂРё Р°СЂС…РёРІР° РґРѕР»Р¶РЅР° РёРјРµС‚СЊ РёРјСЏ 'minecraft_backup'.", "Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РёРіСЂС‹", 0);
 		  return;
 	  }
 	 
-	  JOptionPane.showMessageDialog(this, "Готово!", "Восстоновление игры", -1);
+	  JOptionPane.showMessageDialog(this, "Р“РѕС‚РѕРІРѕ!", "Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РёРіСЂС‹", -1);
 	  refreshButtons();
   }
 
@@ -306,12 +306,12 @@ public class MinecraftBackupManager extends JFrame {
 	  File worldFolder = BackupUtil.getWorlds().get(world);
 	  
 	  if (world < 0) {
-		  JOptionPane.showMessageDialog(this, "Сначала выберите мир для Backup!", "World Backup", 0);
+		  JOptionPane.showMessageDialog(this, "РЎРЅР°С‡Р°Р»Р° РІС‹Р±РµСЂРёС‚Рµ РјРёСЂ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ!", "Р РµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ РјРёСЂР°", 0);
 		  return;
 	  }
 	  
 	  if (!worldFolder.exists()) {
-		  JOptionPane.showMessageDialog(this, "Извените, но такой мир не существует!", "World Backup", 0);
+		  JOptionPane.showMessageDialog(this, "РР·РІРёРЅРёС‚Рµ, РЅРѕ С‚Р°РєРѕРіРѕ РјРёСЂР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!", "Р РµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ РјРёСЂР°", 0);
 		  return;
 	  }
 	  
@@ -333,7 +333,7 @@ public class MinecraftBackupManager extends JFrame {
       }
 	  
 	  BackupUtil.backupWorld(worldFolder, f);
-	  JOptionPane.showMessageDialog(this, "Готово!", "Backup мира", -1);
+	  JOptionPane.showMessageDialog(this, "Р“РѕС‚РѕРІРѕ!", "Р РµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ РёРіСЂС‹", -1);
   }
 
   private void jButton2ActionPerformed(ActionEvent evt) {  
@@ -349,21 +349,21 @@ public class MinecraftBackupManager extends JFrame {
 	  
 	  Boolean accepted = true;
 	  String name = f.getName();
-	  String worldName = JOptionPane.showInputDialog("Введите имя мира",name.substring(0, name.indexOf('.')));
+	  String worldName = JOptionPane.showInputDialog("Р’РІРµРґРёС‚Рµ РёРјСЏ РјРёСЂР°",name.substring(0, name.indexOf('.')));
 	  if(worldName != null || !worldName.trim().equals("")){
 		  File world = new File(MinecraftUtil.getSavesFolder(), worldName);
 		  if(world.exists())
 		  {
-			  accepted = JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(this, "Такой мир уже существует переписать?");
+			  accepted = JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(this, "РўР°РєРѕР№ РјРёСЂ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, РїРµСЂРµРїРёСЃР°С‚СЊ?");
 		  }
 		  if(accepted){
 			  try {
 				  BackupUtil.restoreWorld(world, f);
 			  } catch (IllegalStateException ex) {
-				  JOptionPane.showMessageDialog(this, "Ошибка!\nInvalid Zip Contents!\nthe world folder inside must have 'world_backup' as name.", "World Restoration", 0);
+				  JOptionPane.showMessageDialog(this, "РћС€РёР±РєР°!\nРќРµРІРµСЂРЅРѕРµ СЃРѕРґРµСЂР¶Р°РЅРёРµ Р°СЂС…РёРІР°\nРџР°РїРєР° СЃ РјРёСЂРѕРј РґРѕР»Р¶РЅР° РЅР°Р·С‹РІР°С‚СЊСЃСЏ 'world_backup' ", "Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РјРёСЂР°", 0);
 				  return;
 			  }
-			  JOptionPane.showMessageDialog(this, "Готово!", "восстоновление мира", -1);
+			  JOptionPane.showMessageDialog(this, "Р“РѕС‚РѕРІРѕ!", "Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РјРёСЂР°", -1);
 			  refreshButtons();
 		  }
 	  }
@@ -371,9 +371,9 @@ public class MinecraftBackupManager extends JFrame {
 
   private void fullgamebackupActionPerformed(ActionEvent evt) {
 	  if (this.fullgamebackup.isSelected()){
-		  this.backupgame.setText("Backup игры (полный)");
+		  this.backupgame.setText("Р РµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ (РїРѕР»РЅР°СЏ)");
 	  }else{
-		  this.backupgame.setText("Backup игры (файлы игры)");
+		  this.backupgame.setText("Р РµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ (С„Р°РёР»С‹ РёРіСЂС‹)");
 	  }
   }
 
