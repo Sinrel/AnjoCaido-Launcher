@@ -17,27 +17,7 @@ public class FileUtils {
 	{
 		return readFromFile(file);
 	}
-	
-	private static String addStringAndWriteToFile(File filename, String strPage ){
-		List<String> strings = readFromFile(filename);
-		strings.add(strPage);
-	    PrintWriter writer = null;
-	    try {
-	     writer = new PrintWriter(
-	             new OutputStreamWriter(
-	             new FileOutputStream(filename), "windows-1251"));
-	     String compared = "";
-	     for (String s:strings)
-	     {
-	    	 compared += s + "\n";
-	     }
-	     writer.write(compared);
-	     writer.close();
-	    } catch (Exception ex) {} 
-	return null;
-	
-	}
-	
+		
 	private static String writeToFile(File filename, List<String> strings ){
 	    PrintWriter writer = null;
 	    try {
@@ -67,7 +47,11 @@ public class FileUtils {
 			while ((line = reader.readLine()) != null) {
 				strings.add(line);
 			}
+			
+			if( reader != null )
+				reader.close();
 		} catch (IOException e) {}
+		
 		return strings;
 	}
 }

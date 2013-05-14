@@ -7,9 +7,6 @@ import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 import javax.imageio.ImageIO;
  
@@ -52,7 +49,6 @@ public class LauncherFrame extends Frame {
 					    } catch (InterruptedException e) {
 					    	e.printStackTrace();
 					    }
-						System.out.println("Принудительный выход!");
 						System.exit(0);
 				    }
 			    }.start();

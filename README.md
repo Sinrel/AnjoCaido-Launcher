@@ -1,7 +1,7 @@
 AnjoCaido-Launcher
 ==================
 
-AnjoCaido лаунчер для minecraft обновлённый Sinrel Group
+AnjoCaido-лаунчер для minecraft обновлённый Sinrel Group
 
 ##Преимущества перед оригиналом:##
 - Полная русификация

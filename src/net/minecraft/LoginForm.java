@@ -38,18 +38,12 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import org.sinrel.anjocaido.Options;
 import org.sinrel.anjocaido.OptionsForm;
 
-import java.awt.Choice;
 import java.awt.GridBagConstraints;
-import java.awt.CardLayout;
 import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
 
 public class LoginForm extends Panel {
 	
@@ -60,7 +54,6 @@ public class LoginForm extends Panel {
 	private Checkbox forceUpdateBox = new Checkbox("Обновить клиент!");
 	private Button launchButton = new Button("Войти в игру");
 	private Label errorLabel = new Label("", 1);
-	private Label creditsVersion = new Label("v13");
 	private Button openManager = new Button("Менеджер восстановления");
 	private LauncherFrame launcherFrame;
 	private boolean outdated = false;
@@ -95,7 +88,6 @@ public class LoginForm extends Panel {
 					server = options.getOption(OptionsForm.SERVER_OPTION);
 					port = options.getOption(OptionsForm.PORT_OPTION);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				if (server == null || server.equals("nothing"))
@@ -120,9 +112,7 @@ public class LoginForm extends Panel {
 			}
 			this.userName.setText(dis.readUTF());
 			dis.close();
-			}catch (Exception e) {
-				System.out.println("Файл с последним логином отсуствует!");
-			}
+			}catch (Exception e) {}
     }
 
 	private void writeUsername() {
@@ -334,14 +324,13 @@ public class LoginForm extends Panel {
 				});
 				
 				accountLink.setForeground(Color.BLUE);
-				registerPanel.add(this.creditsVersion, "West");
 				registerPanel.add(new Panel(), "Center");
 			}
 		} catch (Error localError) {}
 		
 		loginPanel.add(registerPanel, "Center");
 		
-		Button optionsButton = new Button("\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438");
+		Button optionsButton = new Button("Настройки");
 		registerPanel.add(optionsButton, BorderLayout.WEST);
 		optionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

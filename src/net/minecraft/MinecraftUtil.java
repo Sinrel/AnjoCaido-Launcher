@@ -35,7 +35,6 @@ public class MinecraftUtil {
 			try {
 				optionsFile.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		return new Options(optionsFile);

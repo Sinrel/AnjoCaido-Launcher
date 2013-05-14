@@ -34,8 +34,6 @@ import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Pack200;
 
-import javax.swing.JOptionPane;
-
 import org.sinrel.anjocaido.OptionsForm;
 
 import anjocaido.minecraftmanager.Zipper;
@@ -69,9 +67,9 @@ public class GameUpdater implements Runnable {
 	protected int state = 1;
 	protected boolean lzmaSupported = false;
 	protected boolean pack200Supported = false;
-	protected String[] genericErrorMessage = { "Произошла ошибка при загрузке апплета", "Пожалуйства свяжитесь с поддержкой для решения этой проблемы.", "<Место для сообщения об ошибке>" };
+	protected String[] genericErrorMessage = { "An error occured while loading the applet.", "Please contact support to resolve this issue.", "<placeholder for error message>" };
 	protected boolean certificateRefused;
-	protected String[] certificateRefusedMessage = { "В доступе а applet отказано.", "пожалуйста согласитесь на разрешение", "апплет для продолжения процесса загрузки." };
+	protected String[] certificateRefusedMessage = { "Permissions for Applet Refused.", "Please accept the permissions dialog to allow", "the applet to continue the loading process." };
 	protected static boolean natives_loaded = false;
 	public boolean forceUpdate = false;
 	public static final String[] gameFiles = { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar", "minecraft.jar", "client.zip" };
@@ -102,27 +100,27 @@ public class GameUpdater implements Runnable {
    protected String getDescriptionForState() {
 	   switch (state) {
 	   case 1:
-		   return "Инициализация загрузчика";
+		   return "РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р·Р°РіСЂСѓР·С‡РёРєР°";
 		   case 2:
-			   return "Обнаружение пакетов для скачки";
+			   return "РћР±РЅР°СЂСѓР¶РµРЅРёРµ РїР°РєРµС‚РѕРІ РґР»СЏ СЃРєР°С‡РєРё";
 			   case 3:
-				   return "Проверка кеш-файлов";
+				   return "РџСЂРѕРІРµСЂРєР° РєРµС€-С„Р°Р№Р»РѕРІ";
 				   case 4:
-					   return "Скачивание пакетов";
+					   return "РЎРєР°С‡РёРІР°РЅРёРµ РїР°РєРµС‚РѕРІ";
 					   case 5:
-						   return "Извлечение скачанных пакетов";
+						   return "РР·РІР»РµС‡РµРЅРёРµ СЃРєР°С‡Р°РЅРЅС‹С… РїР°РєРµС‚РѕРІ";
 						   case 6:
-							   return "Обновление путей";
+							   return "РћР±РЅРѕРІР»РµРЅРёРµ РїСѓС‚РµР№";
 							   case 7:
-								   return "Сворачивание апплета";
+								   return "РЎРІРѕСЂР°С‡РёРІР°РЅРёРµ Р°РїРїР»РµС‚Р°";
 								   case 8:
-									   return "Инициализация реального апплета";
+									   return "РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЂРµР°Р»СЊРЅРѕРіРѕ Р°РїРїР»РµС‚Р°";
 									   case 9:
-										   return "Старт реального апплета";
+										   return "РЎС‚Р°СЂС‚ СЂРµР°Р»СЊРЅРѕРіРѕ Р°РїРїР»РµС‚Р°";
 										   case 10:
-											   return "Загрузка завершена";
+											   return "Р—Р°РіСЂСѓР·РєР° Р·Р°РІРµСЂС€РµРЅР°";
 											   }
-	   return "Неизвестное положение";
+	   return "РќРµРёР·РІРµСЃС‚РЅРѕРµ РїРѕР»РѕР¶РµРЅРёРµ";
   }
 
    protected void loadJarURLs() throws MalformedURLException, IOException  {
@@ -148,11 +146,11 @@ public class GameUpdater implements Runnable {
 	   else if ((osName.startsWith("Solaris")) || (osName.startsWith("SunOS")))
 		   nativeJar = "solaris_natives.jar.lzma";
 	   else {
-		   fatalErrorOccured("OS (" + osName + ") не поддерживается", null);
+		   fatalErrorOccured("OS (" + osName + ") РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ", null);
 	   }
  
 	   if (nativeJar == null)
-		   fatalErrorOccured("Не найдены lwjgl natives", null);
+		   fatalErrorOccured("lwjgl С„Р°Р№Р»С‹ РЅРµ РЅР°Р№РґРµРЅС‹", null);
 	   else
 		   this.urlList[(this.urlList.length - 1)] = new URL(path, nativeJar);
 	   }
@@ -191,7 +189,7 @@ public class GameUpdater implements Runnable {
 				   this.percentage = before;
 			   }
 			   
-			   System.out.println("Путь: " + path);
+			   System.out.println("пїЅпїЅпїЅпїЅ: " + path);
 			   downloadJars(path);
 			   extractJars(path);
 			   extractNatives(path);
@@ -209,8 +207,6 @@ public class GameUpdater implements Runnable {
 	   } catch (AccessControlException ace) {
 		   fatalErrorOccured(ace.getMessage(), ace);
 		   this.certificateRefused = true;
-	   }catch (MalformedURLException e) {
-		   fatalErrorOccured("Ошибка невалидный url (" + e.getMessage() + ")",e);
 	   }catch (Exception e) {
 		   fatalErrorOccured(e.getMessage(), e);
 	   } finally {
@@ -357,7 +353,7 @@ public class GameUpdater implements Runnable {
            this.currentSizeDownload += bufferSize;
            fileSize += bufferSize;
            this.percentage = (initialPercentage + this.currentSizeDownload * 45 / this.totalSizeDownload);
-           this.subtaskMessage = ("Загрузка: " + currentFile + " " + this.currentSizeDownload * 100 / this.totalSizeDownload + "%");
+           this.subtaskMessage = ("Р—Р°РіСЂСѓР·РєР°: " + currentFile + " " + this.currentSizeDownload * 100 / this.totalSizeDownload + "%");
  
            downloadedAmount += bufferSize;
            long timeLapse = System.currentTimeMillis() - downloadStartTime;
@@ -390,7 +386,7 @@ public class GameUpdater implements Runnable {
            downloadFile = true;
            this.currentSizeDownload -= fileSize;
          } else {
-           throw new Exception("Не удалось загрузить " + currentFile);
+           throw new Exception("failed to download " + currentFile);
          }
        }
  
@@ -440,10 +436,10 @@ public class GameUpdater implements Runnable {
      }
      if (is[0] == null) {
        if (currentFile.equals("minecraft.jar")) {
-         throw new Exception("Невозможно загрузить " + currentFile);
+         throw new Exception("Unable to download " + currentFile);
        }
        if(currentFile.equalsIgnoreCase("client.zip")) return null;
-       throw new Exception("Невозможно загрузить " + currentFile);
+       throw new Exception("Unable to download " + currentFile);
      }
  
      return is[0];
@@ -583,7 +579,7 @@ public class GameUpdater implements Runnable {
        return;
      }
      if (native_certs == null) {
-       throw new Exception("Не удается проверить цепочку сертификатов. Родные запись не имеет сертификата цепочки на всех");
+       throw new Exception("Unable to validate certificate chain. Native entry did not have a certificate chain at all");
      }
  
      if (ownCerts.length != native_certs.length) {

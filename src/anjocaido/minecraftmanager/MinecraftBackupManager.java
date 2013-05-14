@@ -1,6 +1,5 @@
 package anjocaido.minecraftmanager;
 
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -9,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -18,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.LayoutStyle;
@@ -28,14 +25,13 @@ import net.minecraft.MinecraftUtil;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
-
-import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 import java.awt.SystemColor;
-//TODO  f*cking перестановвка
+
 public class MinecraftBackupManager extends JFrame {
 	private static final long serialVersionUID = 1L;
-	public static final com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel feel = new NimbusLookAndFeel();
+	public static final NimbusLookAndFeel feel = new NimbusLookAndFeel();
 	
 	private JButton backupgame;
 	private JCheckBox fullgamebackup;
@@ -60,9 +56,7 @@ public class MinecraftBackupManager extends JFrame {
 	private JCheckBox saveuninstall;
 	private JButton uninstall;
 	
-	private ButtonGroup worldgroup;
-	
-	private JComboBox worldBox;
+	private JComboBox< String > worldBox;
 
   public MinecraftBackupManager() {
   	getContentPane().setForeground(SystemColor.control);
@@ -76,7 +70,6 @@ public class MinecraftBackupManager extends JFrame {
   }
 
   private void initComponents() {
-	  this.worldgroup = new ButtonGroup();
 	  this.jTabbedPane1 = new JTabbedPane();
 	  
 	  this.jPanel2 = new JPanel();
@@ -145,7 +138,7 @@ public class MinecraftBackupManager extends JFrame {
 	  this.jLabel4.setText("Но с расширением .mcworld");
 	  this.jLabel5.setText("Ты можешь восстановить абсолютно любой мир с любым именем");
 	  
-	  worldBox = new JComboBox();
+	  worldBox = new JComboBox< String >();
 	  
 	  JLabel lblNewLabel = new JLabel("Мир:");
 	  
@@ -174,7 +167,6 @@ public class MinecraftBackupManager extends JFrame {
 			  	  	    try {
 							desktop.open(MinecraftUtil.getWorkingDirectory());
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 			  	  	}
@@ -227,15 +219,15 @@ public class MinecraftBackupManager extends JFrame {
 	  	  	  );
 	  	  	  this.jPanel1.setLayout(jPanel1Layout);
 	  	  	  
-	  	  	  	  this.jTabbedPane1.addTab("\u0418\u0433\u0440\u043E\u0432\u044B\u0435 \u043C\u0438\u0440\u044B", this.jPanel1);
+	  	  	  	  this.jTabbedPane1.addTab("Игровые миры", this.jPanel1);
 	  
 	  GroupLayout jPanel2Layout = new GroupLayout(this.jPanel2);
 	  this.jPanel2.setLayout(jPanel2Layout);
 	  jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addGap(6, 6, 6).addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(this.jLabel2).addComponent(this.jLabel7).addComponent(this.jLabel1))).addComponent(this.jSeparator1, -1, 551, 32767).addGroup(jPanel2Layout.createSequentialGroup().addComponent(this.uninstall).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.saveuninstall)).addGroup(jPanel2Layout.createSequentialGroup().addComponent(this.backupgame).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.fullgamebackup)).addComponent(this.jButton5, -2, 239, -2)).addContainerGap()));
 	  jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.uninstall).addComponent(this.saveuninstall)).addGap(3, 3, 3).addComponent(this.jSeparator1, -2, 10, -2).addGap(18, 18, 18).addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(this.backupgame).addComponent(this.fullgamebackup)).addGap(18, 18, 18).addComponent(this.jButton5).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jLabel1).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jLabel2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jLabel7).addContainerGap(-1, 32767)));
 	  
-	  this.jTabbedPane1.addTab("\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u043A\u0430 \u0438\u0433\u0440\u044B", this.jPanel2);
-	  this.jLabel8.setText("by AnjoCaido and Sinrel group - v1.3");
+	  this.jTabbedPane1.addTab("Установка игры", this.jPanel2);
+	  this.jLabel8.setText("by AnjoCaido and Sinrel group");
 	  this.jLabel12.setText("Создание резервной копии и восстановление мира занимает некоторое время");
 
 	  GroupLayout layout = new GroupLayout(getContentPane());
@@ -246,7 +238,7 @@ public class MinecraftBackupManager extends JFrame {
   }
 
   private void uninstallActionPerformed(ActionEvent evt) {
-	  int result = JOptionPane.showConfirmDialog(this, "Вы уверенны?", "Are you sure? (Uninstallation)", 0, 2);
+	  int result = JOptionPane.showConfirmDialog(this, "Вы уверены?", "Are you sure? (Uninstallation)", 0, 2);
 	  if ((result == 1) || (result == -1)) {
 		  return;
 	  }
@@ -316,7 +308,7 @@ public class MinecraftBackupManager extends JFrame {
 	  }
 	  
 	  JFileChooser save = new JFileChooser();
-	  Calendar now = GregorianCalendar.getInstance();
+	  GregorianCalendar.getInstance();
 	  save.setFileSelectionMode(0);
 	  save.setSelectedFile(new File(worldFolder.getName() + ".mcworld"));
 	  save.setFileFilter(new BackupUtil.WorldFileFilter());
@@ -336,7 +328,8 @@ public class MinecraftBackupManager extends JFrame {
 	  JOptionPane.showMessageDialog(this, "Готово!", "Резервная копия игры", -1);
   }
 
-  private void jButton2ActionPerformed(ActionEvent evt) {  
+  @SuppressWarnings( "null" )
+private void jButton2ActionPerformed(ActionEvent evt) {  
 	  JFileChooser save = new JFileChooser();
 	  save.setFileSelectionMode(0);
 	  save.setFileFilter(new BackupUtil.WorldFileFilter());

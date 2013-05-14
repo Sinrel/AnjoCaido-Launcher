@@ -1,6 +1,5 @@
 package org.sinrel.anjocaido;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Frame;
@@ -11,13 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLayeredPane;
-import javax.swing.JDesktopPane;
-import java.awt.Button;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
-import java.awt.Panel;
 import javax.swing.JLabel;
 
 import net.minecraft.MinecraftUtil;
@@ -31,11 +26,10 @@ import javax.swing.event.ChangeEvent;
 
 import anjocaido.minecraftmanager.MinecraftBackupManager;
 
-import com.sun.xml.internal.ws.api.server.Container;
-import javax.swing.SwingConstants;
-
 public class OptionsForm extends JFrame {
 
+	private static final long	serialVersionUID	= -5463659953417497059L;
+	
 	private JPanel contentPane;
 	private JTextField serverField;
 	private JTextField portField;
@@ -101,7 +95,6 @@ public class OptionsForm extends JFrame {
 		try {
 			UIManager.setLookAndFeel(MinecraftBackupManager.feel);
 		} catch (UnsupportedLookAndFeelException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		Options options = MinecraftUtil.getOptions();
@@ -127,7 +120,7 @@ public class OptionsForm extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton saveButton = new JButton("\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C");
+		JButton saveButton = new JButton("Сохранить");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				saveOptions();
@@ -135,7 +128,6 @@ public class OptionsForm extends JFrame {
 					OptionsForm.this.setVisible(false);
 					OptionsForm.this.dispose();
 				} catch (Throwable e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -143,7 +135,7 @@ public class OptionsForm extends JFrame {
 		saveButton.setBounds(113, 213, 127, 32);
 		contentPane.add(saveButton);
 		
-		useAutoConnectRadioButton = new JRadioButton("\u0410\u0432\u0442\u043E\u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435 \u043A \u0441\u0435\u0440\u0432\u0435\u0440\u0443");
+		useAutoConnectRadioButton = new JRadioButton("Автоподключение к серверу");
 		useAutoConnectRadioButton.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				setEnablePanel(useAutoConnectRadioButton.isSelected());
@@ -167,7 +159,7 @@ public class OptionsForm extends JFrame {
 		serverField.setEnabled(enable);
 		if(enable) serverField.setText(server);
 		
-		JLabel serverLabel = new JLabel("\u0421\u0435\u0440\u0432\u0435\u0440:");
+		JLabel serverLabel = new JLabel("Сервер:");
 		serverLabel.setBounds(22, 16, 54, 14);
 		serverLabel.setEnabled(enable);
 		panel.add(serverLabel);
@@ -179,15 +171,13 @@ public class OptionsForm extends JFrame {
 		portField.setEnabled(enable);
 		if(enable) portField.setText(port);
 		
-		//if (options.getOption(SERVER_OPTION) == null) 
-		
-		JLabel portLabel = new JLabel("\u043F\u043E\u0440\u0442:");
+		JLabel portLabel = new JLabel("порт:");
 		portLabel.setBounds(97, 52, 46, 14);
 		portLabel.setEnabled(enable);
 		panel.add(portLabel);
 		useAutoConnectRadioButton.setSelected(enable);
 		
-		updateLabel = new Label("\u0421\u0435\u0440\u0432\u0435\u0440 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0439:");
+		updateLabel = new Label("Сервер обновлений:");
 		updateLabel.setBounds(10, 134, 230, 23);
 		contentPane.add(updateLabel);
 		
@@ -198,11 +188,10 @@ public class OptionsForm extends JFrame {
 		try {
 			updateField.setText(MinecraftUtil.getOptions().getOption(OptionsForm.UPDATE_OPTION));
 			
-			Label label = new Label("(\u043D\u0435 \u0440\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u0443\u0435\u0442\u0441\u044F \u0438\u0437\u043C\u0435\u043D\u044F\u0442\u044C)");
+			Label label = new Label("(не рекомендуется изменять)");
 			label.setBounds(10, 151, 230, 23);
 			contentPane.add(label);
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}

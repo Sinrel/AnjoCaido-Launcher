@@ -34,7 +34,7 @@ public class OutputConsole extends JFrame {
 	  this.jTextArea1 = new JTextArea();
 	  
 	  setDefaultCloseOperation(2);
-	  setTitle("Консоль");
+	  setTitle("РљРѕРЅСЃРѕР»СЊ");
 	  
 	  this.jScrollPane1.setAutoscrolls(true);
 	  this.jScrollPane1.setColumnHeaderView(null);
@@ -84,7 +84,7 @@ public class OutputConsole extends JFrame {
   }
 
   public void waitToDispose() {
-	  this.jTextArea1.append("\n\nПоток был остановлен... закрытие этого окна через 15 секунд...\nЕсли вы хотите это скопировать, сделайте это СЕЙЧАС!");
+	  jTextArea1.append("\n\nРџРѕС‚РѕРє Р±С‹Р» РѕСЃС‚Р°РЅРѕРІР»РµРЅ... Р·Р°РєСЂС‹С‚РёРµ СЌС‚РѕРіРѕ РѕРєРЅР° С‡РµСЂРµР· 15 СЃРµРєСѓРЅРґ...\nР•СЃР»Рё РІС‹ С…РѕС‚РёС‚Рµ СЌС‚Рѕ СЃРєРѕРїРёСЂРѕРІР°С‚СЊ, СЃРґРµР»Р°Р№С‚Рµ СЌС‚Рѕ РЎР•Р™Р§РђРЎ!");
 	  try{
 		  Thread.sleep(15000L);
 	  } catch (InterruptedException ex) {} finally {
