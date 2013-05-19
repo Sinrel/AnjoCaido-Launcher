@@ -6,9 +6,9 @@ import org.sinrel.anjocaido.Options;
 import org.sinrel.anjocaido.OptionsForm;
 
 public class MinecraftLauncher {
-  //private static final int MIN_HEAP = 511;
-  //private static final int RECOMMENDED_HEAP = 1024;
-
+	
+	public static final String version = "4.1";
+	
   public static void main(String[] args) throws Exception {
 	  float heapSizeMegs = (float)(Runtime.getRuntime().maxMemory() / 1024L / 1024L);
 	  Options options = MinecraftUtil.getOptions();

@@ -9,6 +9,9 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import org.sinrel.anjocaido.Options;
+import org.sinrel.anjocaido.OptionsForm;
  
 public class LauncherFrame extends Frame {
 	
@@ -21,7 +24,7 @@ public class LauncherFrame extends Frame {
 	public boolean forceUpdate = false;
  
 	public LauncherFrame() {
-		super("Minecraft Launcher");	
+		super("Minecraft Launcher" + " v"+MinecraftLauncher.version );	
 		setBackground(Color.BLACK);
 		
 		this.loginForm = new LoginForm(this);
@@ -109,7 +112,10 @@ public class LauncherFrame extends Frame {
 		return launcher2.canPlayOffline();
     }
  
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		Options options = MinecraftUtil.getOptions();
+		if(options.getOption(OptionsForm.UPDATE_OPTION) == null) options.setOption(OptionsForm.UPDATE_OPTION, "http://s3.amazonaws.com/MinecraftDownload/");
+		
 		LauncherFrame launcherFrame = new LauncherFrame();
 		if(args.length == 2){
 			String port = "25565";

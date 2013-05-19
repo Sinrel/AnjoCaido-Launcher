@@ -178,7 +178,7 @@ public class Launcher extends Applet implements Runnable, AppletStub {
 	  
 	  g.setColor(Color.LIGHT_GRAY);
 
-	  String msg = "Обновление MineCraft";
+	  String msg = "РћР±РЅРѕРІР»РµРЅРёРµ MineCraft";
 	  
 	  if (this.gameUpdater.fatalError) {
 		  msg = "Failed to launch";

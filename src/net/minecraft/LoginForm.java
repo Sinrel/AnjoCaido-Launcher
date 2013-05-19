@@ -38,6 +38,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import org.sinrel.anjocaido.Options;
 import org.sinrel.anjocaido.OptionsForm;
@@ -50,7 +51,7 @@ public class LoginForm extends Panel {
 	private static final long serialVersionUID = 1L;
 	
 	private Image bgImage;
-	private TextField userName = new TextField(20);
+	private TextField userName = new TextField( "" ,20);
 	private Checkbox forceUpdateBox = new Checkbox("Обновить клиент!");
 	private Button launchButton = new Button("Войти в игру");
 	private Label errorLabel = new Label("", 1);
@@ -78,6 +79,11 @@ public class LoginForm extends Panel {
 		
 		this.launchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
+				if( userName.getText().equalsIgnoreCase( "" ) ) {
+					JOptionPane.showMessageDialog( null, "Логин отсутствует! Введите его и повторите вход" , "", JOptionPane.ERROR_MESSAGE );
+					return;
+				}
+				
 				if (LoginForm.this.forceUpdateBox.getState()) {
 					LoginForm.this.launcherFrame.forceUpdate = true;
 				}
@@ -279,51 +285,6 @@ public class LoginForm extends Panel {
 				
 				accountLink.setForeground(Color.BLUE);
 				registerPanel.add(accountLink, "West");
-				registerPanel.add(new Panel(), "Center");
-			} else {
-				Label accountLink = new Label("Нужен аккаунт?") {
-					private static final long serialVersionUID = 0L;
-
-					public void paint(Graphics g) {
-						super.paint(g);
-
-						int x = 0;
-						int y = 0;
-
-						FontMetrics fm = g.getFontMetrics();
-						
-						int width = fm.stringWidth(getText());
-						int height = fm.getHeight();
-
-						if (getAlignment() == 0)
-							x = 0;
-						else if (getAlignment() == 1)
-							x = getBounds().width / 2 - width / 2;
-						else if (getAlignment() == 2) {
-							x = getBounds().width - width;
-							 }
-						y = getBounds().height / 2 + height / 2 - 1;
-
-						g.drawLine(x + 2, y, x + width - 2, y);
-					}
-
-					public void update(Graphics g) {
-						paint(g);
-					}
-				};
-				
-				accountLink.setCursor(Cursor.getPredefinedCursor(12));
-				accountLink.addMouseListener(new MouseAdapter() {
-					public void mousePressed(MouseEvent arg0) {
-						try {
-							Desktop.getDesktop().browse(new URL("http://www.minecraft.net/register.jsp").toURI());
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-				
-				accountLink.setForeground(Color.BLUE);
 				registerPanel.add(new Panel(), "Center");
 			}
 		} catch (Error localError) {}
