@@ -38,7 +38,6 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 import org.sinrel.anjocaido.Options;
 import org.sinrel.anjocaido.OptionsForm;
@@ -80,8 +79,11 @@ public class LoginForm extends Panel {
 		this.launchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				if( userName.getText().equalsIgnoreCase( "" ) ) {
-					JOptionPane.showMessageDialog( null, "Логин отсутствует! Введите его и повторите вход" , "", JOptionPane.ERROR_MESSAGE );
-					return;
+					/*
+						JOptionPane.showMessageDialog( null, "Логин отсутствует! Введите его и повторите вход" , "", JOptionPane.ERROR_MESSAGE );
+						return;
+					*/
+					userName.setText( "player" );
 				}
 				
 				if (LoginForm.this.forceUpdateBox.getState()) {
