@@ -89,8 +89,9 @@ public class LoginForm extends Panel {
 				if (LoginForm.this.forceUpdateBox.getState()) {
 					LoginForm.this.launcherFrame.forceUpdate = true;
 				}
-				LoginForm.this.launcherFrame.login(LoginForm.this.userNameBox
-						.getText(), LoginForm.this.versionChoice.getSelectedItem());
+				LoginForm.this.launcherFrame.login(
+						LoginForm.this.userNameBox.getText(),
+						LoginForm.this.versionChoice.getSelectedItem());
 			}
 		});
 	}
@@ -232,6 +233,7 @@ public class LoginForm extends Panel {
 		titles.add(new Label("Логин:", 2));
 		titles.add(new Label("", 2));
 		values.add(this.userNameBox);
+		forceUpdateBox.setEnabled(false);
 		values.add(this.forceUpdateBox);
 
 		panel.add(titles, "West");
@@ -298,22 +300,34 @@ public class LoginForm extends Panel {
 		loginPanel.add(registerPanel, "Center");
 
 		Button optionsButton = new Button("Настройки");
+		optionsButton.setEnabled(false);
 		registerPanel.add(optionsButton, BorderLayout.WEST);
 		loginPanel.add(this.launchButton, "East");
-		
-		for (File version : new File(MinecraftUtil.getWorkingDirectory(),
-				"versions").listFiles()) {
-			if(version.isDirectory())
-				versionChoice.add(version.getName());
+		boolean empty = true;
+		try {
+			for (File version : new File(MinecraftUtil.getWorkingDirectory(),
+					"versions").listFiles()) {
+				if (version.isDirectory()) {
+					versionChoice.add(version.getName());
+					empty = false;
+				}
+			}
+		} catch (NullPointerException e) {
+
 		}
-		
+
 		Label versionLabel = new Label("Версия:");
-		
+		if (empty){
+			launchButton.setEnabled(false);
+			versionLabel.setText("Список установленных версий пуст");
+		}
+
 		Panel anjoPanel = new Panel();
 		loginPanel.add(anjoPanel, "South");
 		anjoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		anjoPanel.add(versionLabel);
-		anjoPanel.add(versionChoice);
+		if (!empty)
+			anjoPanel.add(versionChoice);
 
 		panel.add(loginPanel, "South");
 
