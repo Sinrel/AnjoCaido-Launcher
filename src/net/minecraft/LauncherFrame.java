@@ -75,17 +75,18 @@ public class LauncherFrame extends Frame {
 				+ ":35b9fd01865fda9d70b157e244cf801c:" + userName + ":12345:";
 	}
 
-	public void login(String userName, String version){
+	public void login(String userName, String version) {
 		String result = getFakeResult(userName);
 		String[] values = result.split(":");
-		
+
 		try {
-			startMinecraft(version, MinecraftUtil.getWorkingDirectory().getAbsolutePath(), userName, values[3].trim());
+			startMinecraft(version, MinecraftUtil.getWorkingDirectory()
+					.getAbsolutePath(), userName, values[3].trim());
 			System.exit(0);
 		} catch (IOException e) {
 			e.printStackTrace();
-		} 
-   }
+		}
+	}
 
 	@SuppressWarnings("unused")
 	private void showError(String error) {
@@ -100,7 +101,8 @@ public class LauncherFrame extends Frame {
 			String username, String session) throws FileNotFoundException,
 			IOException {
 		root = root.endsWith("/") ? root : root + '/';
-		String versionDir = new File(root, "versions/" + version).getAbsolutePath() + "/";
+		String versionDir = new File(root, "versions/" + version)
+				.getAbsolutePath() + "/";
 		String assetsDir = new File(root, "assets").getAbsolutePath() + "/";
 
 		List<String> params = new ArrayList<>();
@@ -126,23 +128,24 @@ public class LauncherFrame extends Frame {
 					+ vars[2] + "/" + vars[1] + "-" + vars[2] + ".jar";
 			path.append(libPath + ";");
 			JsonElement natives = lib.getAsJsonObject().get("natives");
-			if(natives != null){
+			if (natives != null) {
 				String os = "windows";
-				if(MinecraftUtil.getPlatform() == OS.windows){
+				if (MinecraftUtil.getPlatform() == OS.windows) {
 					os = "windows";
-				}
-				else if(MinecraftUtil.getPlatform() == OS.macos){
+				} else if (MinecraftUtil.getPlatform() == OS.macos) {
 					os = "osx";
-				}
-				else if(MinecraftUtil.getPlatform() == OS.linux){
+				} else if (MinecraftUtil.getPlatform() == OS.linux) {
 					os = "linux";
 				}
+
 				File nativesZip = new File(root + "libraries/"
 						+ vars[0].replaceAll("\\.", "/") + "/" + vars[1] + "/"
-						+ vars[2] + "/" + vars[1] + "-" + vars[2] + "-" + natives.getAsJsonObject().get(os).getAsString() + ".jar");
+						+ vars[2] + "/" + vars[1] + "-" + vars[2] + "-"
+						+ "natives-"+os
+						+ ".jar");
 				Zipper.unzipFolder(nativesZip, new File(versionDir, "natives"));
 			}
-			
+
 		}
 		path.append(versionDir + version + ".jar");
 		params.add("\"" + path.toString() + "\"");
@@ -153,20 +156,23 @@ public class LauncherFrame extends Frame {
 				.replace("${auth_session}", session)
 				.replace("${version_name}", version)
 				.replace("${game_directory}", root)
-				.replace("${game_assets}", assetsDir));
-
+				.replace("${game_assets}", assetsDir)
+				.replace("${auth_uuid}", "1")
+				.replace("${auth_access_token}", "1")
+				.replace("${auth_uuid}", session)
+				);
+		        
 		StringBuilder sb = new StringBuilder();
 		for (String s : params) {
 			System.out.print(s + " ");
 			sb.append(s + " ");
 		}
-
 		Runtime.getRuntime().exec(sb.toString());
 	}
 
 	public static void main(String[] args) throws Exception {
 		LauncherFrame launcherFrame = new LauncherFrame();
-		if (args.length >= 2) 
+		if (args.length >= 2)
 			launcherFrame.login(args[0], args[1]);
 		launcherFrame.setVisible(true);
 	}
