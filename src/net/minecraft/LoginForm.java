@@ -30,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
+
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
@@ -308,8 +309,12 @@ public class LoginForm extends Panel {
 			for (File version : new File(MinecraftUtil.getWorkingDirectory(),
 					"versions").listFiles()) {
 				if (version.isDirectory()) {
-					versionChoice.add(version.getName());
-					empty = false;
+					for(String name : version.list()) {
+						if(name.equals(version.getName()+".json")) {
+						versionChoice.add(version.getName());
+						empty = false;
+						}
+					}
 				}
 			}
 		} catch (NullPointerException e) {
