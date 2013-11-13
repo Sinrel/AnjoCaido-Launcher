@@ -1,4 +1,4 @@
-package anjocaido.minecraftmanager;
+package net.minecraft;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

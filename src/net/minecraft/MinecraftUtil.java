@@ -15,8 +15,6 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.sinrel.anjocaido.Options;
-
 public class MinecraftUtil {
 	
 	private static File workDir = null;
@@ -28,17 +26,6 @@ public class MinecraftUtil {
 	private static File tempFolder = null;
 	private static File nativesFolder = null;
 	
-	public static Options getOptions()
-	{
-		File optionsFile = new File(getWorkingDirectory(), "Sinrel-options.txt");
-		if(!optionsFile.exists())
-			try {
-				optionsFile.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		return new Options(optionsFile);
-	}
 
 	public static File getWorkingDirectory() {
 		if (workDir == null) {
@@ -131,7 +118,7 @@ public class MinecraftUtil {
 		return workingDirectory;
    }
 
-  private static OS getPlatform() {
+  public static OS getPlatform() {
 	  String osName = System.getProperty("os.name").toLowerCase();
 	  
 	  if (osName.contains("win")) {
@@ -240,7 +227,7 @@ public class MinecraftUtil {
     return "5909222";
   }
 
-  private static enum OS {
+  public static enum OS {
 	  linux, solaris, windows, macos, unknown;
   }
 }
