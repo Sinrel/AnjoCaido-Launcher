@@ -38,6 +38,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -66,14 +67,15 @@ public class LoginForm extends Panel {
 	private boolean outdated = false;
 	private VolatileImage img;
 	private Button optionsButton = new Button("Настройки");
-    private Label versionLabel = new Label("Версия:");
-    private Label login = new Label("Логин:",2);
+	private Label versionLabel = new Label("Версия:");
+	private Label login = new Label("Логин:", 2);
 	private boolean empty = true;
+
 	public LoginForm(LauncherFrame launcherFrame) {
-        Settings.langChoice.add("Russian");
-        Settings.langChoice.add("English");
+		SettingsFrame.langChoice.add("Russian");
+		SettingsFrame.langChoice.add("English");
 		this.launcherFrame = launcherFrame;
-        this.lf = this;
+		this.lf = this;
 		GridBagLayout gbl = new GridBagLayout();
 		setLayout(gbl);
 
@@ -104,6 +106,7 @@ public class LoginForm extends Panel {
 				if (LoginForm.this.forceUpdateBox.getState()) {
 					LoginForm.this.launcherFrame.forceUpdate = true;
 				}
+				loginOk();
 				LoginForm.this.launcherFrame.login(
 						LoginForm.this.userNameBox.getText(),
 						LoginForm.this.versionChoice.getSelectedItem());
@@ -112,55 +115,56 @@ public class LoginForm extends Panel {
 		loadLangLauncher();
 
 	}
-	
-	
 
-	
-    public void loadLangLauncher() {
-    	Properties lang = new Properties();
-    	InputStream file = null;
-        try {
-			BufferedReader br = new BufferedReader(new FileReader(MinecraftUtil.getWorkingDirectory()+"/settings.txt"));
-		    if(!new File(MinecraftUtil.getWorkingDirectory()+"/settings.txt").exists())
-		    {
-		    	new File(MinecraftUtil.getWorkingDirectory()+"/settings.txt").createNewFile();
-		    	FileWriter writer = new FileWriter(new File(MinecraftUtil.getWorkingDirectory()+"/settings.txt"));
-		    	writer.write("0");
-		    	writer.close();
-		    }
-		
-				switch(br.readLine())
-				{
-				case "0": file = LoginForm.class.getResourceAsStream("/net/minecraft/lang/ru_ru.properties"); break;
-				case "1": file = LoginForm.class.getResourceAsStream("/net/minecraft/lang/en_US.properties"); break;
-				default: file = LoginForm.class.getResourceAsStream("/net/minecraft/lang/en_US.properties"); break;
-				}
-			
-				  lang.load(file);
-	    		  this.forceUpdateBox.setLabel((String) lang.get("forceUpdateBox"));
-	    	      this.launchButton.setLabel((String) lang.get("launchButton"));
-	    	      this.login.setText((String) lang.get("login"));
-	    	      this.optionsButton.setLabel((String) lang.get("optionsButton"));
-	              this.versionLabel.setText((String) lang.get("versionLabel"));
-	              if(this.empty) {
-	            	  this.versionLabel.setText((String) lang.get("emptyversion"));
-	              }
-	              
-	              Settings.buttonexit.setText((String) lang.get("buttonexit"));
-	              Settings.buttonsave.setText((String) lang.get("buttonsave"));
-	              Settings.labelChangeLang.setText((String) lang.get("labelChangeLang"));
-	              Settings.langChoice.select(Integer.valueOf((String) lang.get("lang")));
-	              Settings.Title = (String) lang.get("TitleSettings");
-	              file.close();
-	              br.close();
-			
-			} catch (IOException e) {
-				e.printStackTrace();
+	public void loadLangLauncher() {
+		Properties lang = new Properties();
+		InputStream file = null;
+		try {
+
+			Settings settings = SettingsLoader.load();
+			try {
+				file = LoginForm.class
+						.getResourceAsStream("/net/minecraft/lang/"
+								+ settings.lang + ".properties");
+				if(file == null)
+					throw new NullPointerException();
+			} catch (NullPointerException e) {
+				file = LoginForm.class
+						.getResourceAsStream("/net/minecraft/lang/ru_RU.properties");
 			}
-        
+			lang.load(file);
+			this.forceUpdateBox.setLabel((String) lang.get("forceUpdateBox"));
+			this.launchButton.setLabel((String) lang.get("launchButton"));
+			this.login.setText((String) lang.get("login"));
+			this.optionsButton.setLabel((String) lang.get("optionsButton"));
+			this.versionLabel.setText((String) lang.get("versionLabel"));
+			if (this.empty) {
+				this.versionLabel.setText((String) lang.get("emptyversion"));
+			}
 
-    }
-	
+			SettingsFrame.buttonexit.setText((String) lang.get("buttonexit"));
+			SettingsFrame.buttonsave.setText((String) lang.get("buttonsave"));
+			SettingsFrame.labelChangeLang.setText((String) lang
+					.get("labelChangeLang"));
+			SettingsFrame.langChoice.select(Integer.valueOf((String) lang
+					.get("lang")));
+			SettingsFrame.Title = (String) lang.get("TitleSettings");
+			SettingsFrame.memory = (String)lang.get("memory");
+			SettingsFrame.min = (String)lang.get("min");
+			SettingsFrame.max = (String)lang.get("max");
+			SettingsFrame.session = (String)lang.get("session");
+			
+			file.close();
+
+			launcherFrame.pack();
+			launcherFrame.repaint();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	private void readUsername() {
 		try {
 			File lastLogin = new File(MinecraftUtil.getWorkingDirectory(),
@@ -367,7 +371,7 @@ public class LoginForm extends Panel {
 		optionsButton.setEnabled(true);
 		optionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-                 new Settings();
+				new SettingsFrame();
 			}
 		});
 		registerPanel.add(optionsButton, BorderLayout.WEST);
@@ -376,10 +380,10 @@ public class LoginForm extends Panel {
 			for (File version : new File(MinecraftUtil.getWorkingDirectory(),
 					"versions").listFiles()) {
 				if (version.isDirectory()) {
-					for(String name : version.list()) {
-						if(name.equals(version.getName()+".json")) {
-						versionChoice.add(version.getName());
-						this.empty = false;
+					for (String name : version.list()) {
+						if (name.equals(version.getName() + ".json")) {
+							versionChoice.add(version.getName());
+							this.empty = false;
 						}
 					}
 				}
@@ -388,7 +392,7 @@ public class LoginForm extends Panel {
 
 		}
 
-		if (this.empty){
+		if (this.empty) {
 			launchButton.setEnabled(false);
 			versionLabel.setText("Список установленных версий пуст");
 		}
@@ -398,7 +402,7 @@ public class LoginForm extends Panel {
 		anjoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		anjoPanel.add(versionLabel);
 		if (!empty)
-		anjoPanel.add(versionChoice);
+			anjoPanel.add(versionChoice);
 
 		panel.add(loginPanel, "South");
 

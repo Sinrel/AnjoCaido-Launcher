@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class LauncherFrame extends Frame {
+public class LauncherFrame extends Frame implements Serializable {
 
 	public static final int VERSION = 12;
 	private static final long serialVersionUID = 1L;
@@ -70,18 +71,11 @@ public class LauncherFrame extends Frame {
 		});
 	}
 
-	public String getFakeResult(String userName) {
-		return MinecraftUtil.getFakeLatestVersion()
-				+ ":35b9fd01865fda9d70b157e244cf801c:" + userName + ":12345:";
-	}
-
 	public void login(String userName, String version) {
-		String result = getFakeResult(userName);
-		String[] values = result.split(":");
-
 		try {
+			Settings settings = SettingsLoader.load();
 			startMinecraft(version, MinecraftUtil.getWorkingDirectory()
-					.getAbsolutePath(), userName, values[3].trim());
+					.getAbsolutePath(), userName, settings.session == null ? "12345" : settings.session);
 			System.exit(0);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -105,11 +99,13 @@ public class LauncherFrame extends Frame {
 				.getAbsolutePath() + "/";
 		String assetsDir = new File(root, "assets").getAbsolutePath() + "/";
 
+		Settings settings = SettingsLoader.load();
+		
 		List<String> params = new ArrayList<>();
 		params.add("java");
 		params.add("-Xincgc");
-		params.add("-Xms512m");
-		params.add("-Xmx1024m");
+		params.add("-Xms" + (settings.minRam == 0 ? 512 : settings.minRam) + "m");
+		params.add("-Xmx" + (settings.maxRam == 0 ? 1024 : settings.maxRam) + "m");
 		params.add("-Djava.library.path=\"" + versionDir + "natives\"");
 
 		JsonParser parser = new JsonParser();
@@ -141,8 +137,7 @@ public class LauncherFrame extends Frame {
 				File nativesZip = new File(root + "libraries/"
 						+ vars[0].replaceAll("\\.", "/") + "/" + vars[1] + "/"
 						+ vars[2] + "/" + vars[1] + "-" + vars[2] + "-"
-						+ "natives-"+os
-						+ ".jar");
+						+ "natives-" + os + ".jar");
 				Zipper.unzipFolder(nativesZip, new File(versionDir, "natives"));
 			}
 
@@ -159,9 +154,8 @@ public class LauncherFrame extends Frame {
 				.replace("${game_assets}", assetsDir)
 				.replace("${auth_uuid}", "1")
 				.replace("${auth_access_token}", "1")
-				.replace("${auth_uuid}", session)
-				);
-		        
+				.replace("${auth_uuid}", session));
+
 		StringBuilder sb = new StringBuilder();
 		for (String s : params) {
 			System.out.print(s + " ");
